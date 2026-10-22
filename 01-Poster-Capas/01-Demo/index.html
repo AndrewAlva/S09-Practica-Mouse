@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01-demo. (Poster-Capas)</title>
+  </head>
+  <body>
+    <main id="poster">
+      <!-- Cada .capa es un nivel de profundidad. JS la desplaza; lo de adentro es el diseño. -->
+      <div class="capa" id="capa-fondo">
+        <div class="circulo"></div>
+      </div>
+
+      <div class="capa" id="capa-anillo">
+        <div class="anillo"></div>
+      </div>
+
+      <div class="capa" id="capa-titulo">
+        <h1 class="titulo">Para<br>llax.</h1>
+      </div>
+
+      <div class="capa" id="capa-etiqueta">
+        <p class="etiqueta">S09 · Práctica<br><b>Mouse / Cursor</b></p>
+      </div>
+
+      <div class="capa" id="capa-texto">
+        <p class="texto">Leer → Normalizar → Mapear → Suavizar</p>
+      </div>
+    </main>
+
+    <aside id="hud">
+      norm x <span id="norm-x">0.00</span> · y <span id="norm-y">0.00</span>
+    </aside>
+
+    <div id="cursor"></div>
+    <div id="target"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02-starter. (Poster-Capas)</title>
+  </head>
+  <body>
+    <main id="poster">
+      <!-- Cada .capa es un nivel de profundidad. JS la desplaza; lo de adentro es TU diseño.
+           Cambia formas, textos, colores e imágenes. Agrega capas si quieres (y agrégalas a CAPAS en main.js). -->
+      <div class="capa" id="capa-fondo">
+        <div class="forma-fondo"></div>
+      </div>
+
+      <div class="capa" id="capa-forma">
+        <div class="forma"></div>
+      </div>
+
+      <div class="capa" id="capa-titulo">
+        <h1 class="titulo">Tu<br>título.</h1>
+      </div>
+
+      <div class="capa" id="capa-detalle">
+        <p class="detalle">Capa de detalle<br>la más cercana</p>
+      </div>
+    </main>
+
+    <aside id="hud">
+      norm x <span id="norm-x">0.00</span> · y <span id="norm-y">0.00</span>
+    </aside>
+
+    <div id="cursor"></div>
+    <div id="target"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+:root {
+  --fondo-1: #1d1530;
+  --fondo-2: #07060b;
+  --texto: #f4efe6;
+  --acento: #ff6a3d;
+
+  --sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  overflow: hidden;
+  color: var(--texto);
+  font-family: var(--sans);
+  /* El fondo lo pone CSS; el canvas es transparente encima */
+  background: radial-gradient(circle at 68% 45%, var(--fondo-1), var(--fondo-2) 70%);
+}
+
+/* Canvas: ocupa la ventana, detrás del texto */
+#lienzo {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Texto en HTML ---------------------------------------------------------- */
+#copy {
+  position: fixed;
+  left: 7vw;
+  top: 50%;
+  translate: 0 -50%;
+  max-width: 34ch;
+  pointer-events: none;   /* que el mouse pase al documento */
+}
+
+.kicker {
+  margin: 0 0 1rem;
+  font: 500 12px/1 var(--mono);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--acento);
+}
+
+.titulo {
+  margin: 0;
+  font-size: clamp(3.5rem, 11vw, 9rem);
+  font-weight: 800;
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+
+.bajada {
+  margin: 1.4rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  opacity: .75;
+}
+
+/* Lectura de datos ------------------------------------------------------ */
+#hud {
+  position: fixed;
+  left: 7vw;
+  bottom: 28px;
+  display: flex;
+  gap: 24px;
+  font: 400 12px/1 var(--mono);
+  letter-spacing: .06em;
+  opacity: .55;
+  font-variant-numeric: tabular-nums;
+
+  b { font-weight: 500; color: var(--texto); }
+}
+
+@media (max-width: 800px) {
+  #copy { top: auto; bottom: 64px; translate: none; }
+}

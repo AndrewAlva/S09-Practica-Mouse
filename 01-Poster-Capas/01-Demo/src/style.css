@@ -1,0 +1,136 @@
+:root {
+  --papel: #ece7dc;
+  --tinta: #141414;
+  --acento: #ff4a1c;
+
+  --sans: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--sans);
+  cursor: none;          /* el cursor real se reemplaza por #cursor */
+  overflow: hidden;
+}
+
+/* Póster: ocupa toda la ventana ----------------------------------------- */
+#poster {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+}
+
+/* Capa: solo posiciona. JS le escribe transform: translate() rotate() */
+.capa {
+  position: absolute;
+  will-change: transform;
+}
+
+/* Fondo · círculo de acento, se mueve al revés (rango negativo) */
+#capa-fondo { right: 6vw; top: 12svh; }
+.circulo {
+  width: min(62vmin, 640px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--acento);
+}
+
+/* Anillo · contorno que cruza el título */
+#capa-anillo { left: 30vw; top: 26svh; }
+.anillo {
+  width: min(44vmin, 460px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid var(--tinta);
+}
+
+/* Título · la pieza principal */
+#capa-titulo { left: 6vw; top: 14svh; }
+.titulo {
+  margin: 0;
+  font-size: min(21vw, 34svh);
+  font-weight: 900;
+  line-height: .82;
+  letter-spacing: -.06em;
+  text-transform: uppercase;
+}
+
+/* Etiqueta · la más cercana: se mueve más y rota */
+#capa-etiqueta { right: 14vw; bottom: 16svh; }
+.etiqueta {
+  margin: 0;
+  padding: 14px 18px;
+  background: var(--tinta);
+  color: var(--papel);
+  font: 500 14px/1.35 var(--mono);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  rotate: -8deg;   /* inclinación base; la rotación del mouse se suma desde .capa */
+
+  b { color: var(--acento); font-weight: 500; }
+}
+
+/* Texto · pie del póster, casi quieto */
+#capa-texto { left: 6vw; bottom: 6svh; }
+.texto {
+  margin: 0;
+  font: 500 13px/1 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* Lectura de datos ------------------------------------------------------ */
+#hud {
+  position: fixed;
+  right: 20px;
+  top: 18px;
+  font: 400 12px/1 var(--mono);
+  letter-spacing: .06em;
+  opacity: .6;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Cursor custom (ejercicio 01 de S08) y círculo que lo sigue (ejercicio 02) */
+#cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 10;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    clip-path: polygon(0 0, 0 100%, 36% 76%, 60% 100%, 78% 90%, 52% 68%, 100% 68%);
+  }
+  &::before { background-color: var(--papel); }
+  &::after { inset: 3px; background-color: var(--tinta); }
+}
+
+#target {
+  position: fixed;
+  top: -36px;
+  left: -36px;
+  width: 72px;
+  height: 72px;
+  pointer-events: none;
+  z-index: 9;
+  border-radius: 50%;
+  background: var(--papel);
+  mix-blend-mode: difference;   /* invierte los colores de lo que tiene debajo */
+}
+
+/* Sin mouse (pantallas táctiles): se oculta el cursor custom */
+@media (hover: none) {
+  body { cursor: auto; }
+  #cursor, #target { display: none; }
+}
